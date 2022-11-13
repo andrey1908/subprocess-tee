@@ -76,9 +76,9 @@ async def _stream_subprocess(args: str, **kwargs: Any) -> CompletedProcess:
             sink.append(line_str)
             if not kwargs.get("quiet", False):
                 if pipe and hasattr(pipe, "write"):
-                    print(line_str, file=pipe)
+                    print(line_str, file=pipe, end="\r\n")
                 else:
-                    print(line_str)
+                    print(line_str, end="\r\n")
 
         loop = asyncio.get_event_loop_policy().get_event_loop()
         tasks = []
